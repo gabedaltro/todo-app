@@ -33,7 +33,7 @@ const Home = ({ todos }: PostProps) => {
   };
 
   return (
-    <div className="h-screen bg-gray-500">
+    <div className="min-h-screen h-max bg-gray-500">
       <nav className="flex justify-center p-4 bg-gray-600">
         <h1 className="text-white text-2xl font-bold">Tasks</h1>
       </nav>
