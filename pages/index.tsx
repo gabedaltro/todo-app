@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { useState } from "react";
-import { getAllTodos, Todo } from "../lib/db";
+import { getAllTodos, removeTodo, Todo } from "../lib/db";
 
 interface PostProps {
   todos: Todo[];
@@ -22,6 +22,13 @@ const Home = ({ todos }: PostProps) => {
     await fetch("/api/todo", {
       method: "POST",
       body: JSON.stringify(description),
+    });
+  };
+
+  const handleDelete = async (id: number) => {
+    await fetch("/api/todo", {
+      method: "DELETE",
+      body: JSON.stringify(id),
     });
   };
 
@@ -72,7 +79,7 @@ const Home = ({ todos }: PostProps) => {
                       />
                     </svg>
                   </span>
-                  <span>
+                  <span onClick={() => handleDelete(item.id)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6"
